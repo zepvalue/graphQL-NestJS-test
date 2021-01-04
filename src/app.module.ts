@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppGateway } from './app.gateway';
+
 @Module({
   imports: [
     GraphQLModule.forRoot({
@@ -12,7 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forRoot({
       type: 'postgres',
       url:
-        'postgres://qbiehldw:AsDKYAGR0L9gw-XikMPGEBoloVzKnZfb@suleiman.db.elephantsql.com:5432/qbiehldw',
+        'postgres://hfuieeos:f9smKDnqp5NDTrF9h-QPe2CKKRnaupYR@suleiman.db.elephantsql.com:5432/hfuieeos',
       port: 3306,
       name: 'default',
       synchronize: true,
@@ -20,5 +22,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       logging: true,
     }),
   ],
+  providers: [AppGateway],
 })
 export class AppModule {}
