@@ -11,8 +11,8 @@ export class UserResolver {
     return 'world';
   }
 
-  @Query(() => [CreateUserDto])
-  dates(@Args('timeIn') timeIn?: Date, @Args('timeOut') timeOut?: Date) {
-    return this.userService.getUsersFromDates(timeIn, timeOut);
-  }
+  // @Query(() => [CreateUserDto])
+  // dates(@Args('timeIn') timeIn?: Date, @Args('timeOut') timeOut?: Date) {
+  //   return this.userService.getUsersFromDates(timeIn, timeOut);
+  // }
 }
