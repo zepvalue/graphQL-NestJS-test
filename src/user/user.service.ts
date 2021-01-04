@@ -27,7 +27,7 @@ export class UserService {
 
   async getUsersFromDates(timeIn: Date, timeOut: Date): Promise<User[]> {
     return this.usersRepository.query(
-      `SELECT * FROM public."user" where timeIn='${timeIn}' and timeOut='${timeOut}'`,
+      `SELECT * FROM public."user" where "timeIn"='${timeIn}' and "timeOut"='${timeOut}'`,
     );
   }
 }

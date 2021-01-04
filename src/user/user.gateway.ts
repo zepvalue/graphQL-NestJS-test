@@ -21,7 +21,7 @@ export class UserGateway
   constructor(private readonly userService: UserService) {}
 
   @WebSocketServer() server: Server;
-  private logger: Logger = new Logger('AppGateway');
+  private logger: Logger = new Logger('UserGateway');
 
   @SubscribeMessage('msgToServer')
   handleMessage(client: Socket, payload: string): void {
