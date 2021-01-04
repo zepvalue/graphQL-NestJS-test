@@ -7,7 +7,7 @@ export class CreateUserDto {
   @Field()
   readonly sessionID: string;
   @Field()
-  readonly totalTime: number;
+  readonly seconds: number;
   @Field()
   readonly timeIn: Date;
   @Field()

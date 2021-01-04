@@ -14,7 +14,7 @@ import { UserService } from './user.service';
 export class UserGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
   timer = null;
-  totalTime = 0;
+  seconds = 0;
   timeIn = new Date();
   timeOut = new Date();
 
@@ -37,13 +37,13 @@ export class UserGateway
     this.timeOut = new Date();
 
     console.log('client.id', typeof client.id);
-    console.log('time', this.totalTime);
+    console.log('time', this.seconds);
     console.log('timeIN', typeof this.timeIn);
     console.log('timeOUT', typeof this.timeOut);
 
     this.userService.create({
       sessionID: client.id,
-      totalTime: this.totalTime,
+      seconds: this.seconds,
       timeIn: this.timeIn,
       timeOut: this.timeOut,
     });
@@ -53,7 +53,7 @@ export class UserGateway
     this.logger.log(`Client connected: ${client.id}`);
     this.timeIn = new Date();
     this.timer = setInterval(() => {
-      this.totalTime++;
+      this.seconds++;
     }, 1000);
   }
 }

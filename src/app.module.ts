@@ -13,7 +13,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forRoot({
       type: 'postgres',
       url:
-        'postgres://zkwlmdzd:Jn-Cy8aBItHhsSih1AxSNxTFKFtani4B@suleiman.db.elephantsql.com:5432/zkwlmdzd',
+        'postgres://zkwlmdzd:sp-IVGTUaBQwjTzT6Hr5Hx0WVfqKIOhS@suleiman.db.elephantsql.com:5432/zkwlmdzd',
       port: 3306,
       name: 'default',
       synchronize: true,

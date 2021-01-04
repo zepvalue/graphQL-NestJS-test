@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Param, Logger } from '@nestjs/common';
+import { Controller, Get, Req, Param, Logger, Query } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './entities/user.entity';
 import Request from 'express';
@@ -10,11 +10,10 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  findUsersInRange(
-    @Param('timeIn') timeIn: Date,
-    @Param('timeOut') timeOut: Date,
-  ) {
-    this.logger.verbose('IN TIME RANGE');
+  findUsersInRange(@Query() query) {
+    console.log('RANGE');
+    const { timeIn, timeOut } = query;
+
     return this.userService.getUsersFromDates(timeIn, timeOut);
   }
 

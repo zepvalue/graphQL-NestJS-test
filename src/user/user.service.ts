@@ -14,7 +14,7 @@ export class UserService {
   create(createUserDto: CreateUserDto): Promise<User> {
     const user = new User();
     user.sessionID = createUserDto.sessionID;
-    user.totalTime = createUserDto.totalTime;
+    user.seconds = createUserDto.seconds;
     user.timeIn = createUserDto.timeIn;
     user.timeOut = createUserDto.timeOut;
 
@@ -25,7 +25,7 @@ export class UserService {
     return this.usersRepository.find();
   }
 
-  async getUsersFromDates(timeIn: Date, timeOut: Date): Promise<User[]> {
+  async getUsersFromDates(timeIn: string, timeOut: string): Promise<User[]> {
     return this.usersRepository.query(
       `SELECT * FROM public."user" where "timeIn"='${timeIn}' and "timeOut"='${timeOut}'`,
     );

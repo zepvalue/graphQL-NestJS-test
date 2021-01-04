@@ -9,11 +9,11 @@ export class User {
   sessionID: string;
 
   @Column()
-  totalTime: number;
+  seconds: number;
 
-  @Column()
+  @Column({ type: 'date' })
   timeIn: Date;
 
-  @Column()
+  @Column({ type: 'date' })
   timeOut: Date;
 }
