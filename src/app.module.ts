@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { UserModule } from './user/user.module';
-import { MongooseModule } from '@nestjs/mongoose';
-
+import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     GraphQLModule.forRoot({
@@ -10,7 +9,16 @@ import { MongooseModule } from '@nestjs/mongoose';
       autoSchemaFile: 'schema.gql',
     }),
     UserModule,
-    MongooseModule.forRoot('mongodb://localhost/nest'),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      url:
+        'postgres://qbiehldw:AsDKYAGR0L9gw-XikMPGEBoloVzKnZfb@suleiman.db.elephantsql.com:5432/qbiehldw',
+      port: 3306,
+      name: 'default',
+      synchronize: true,
+      autoLoadEntities: true,
+      logging: true,
+    }),
   ],
 })
 export class AppModule {}
