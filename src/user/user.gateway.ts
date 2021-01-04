@@ -36,11 +36,6 @@ export class UserGateway
     this.logger.log(`Client disconnected: ${client.id}`);
     this.timeOut = new Date();
 
-    console.log('client.id', typeof client.id);
-    console.log('time', this.seconds);
-    console.log('timeIN', typeof this.timeIn);
-    console.log('timeOUT', typeof this.timeOut);
-
     this.userService.create({
       sessionID: client.id,
       seconds: this.seconds,

@@ -5,13 +5,10 @@ import Request from 'express';
 
 @Controller('users')
 export class UserController {
-  private logger: Logger = new Logger('UserController');
-
   constructor(private readonly userService: UserService) {}
 
   @Get()
   findUsersInRange(@Query() query) {
-    console.log('RANGE');
     const { timeIn, timeOut } = query;
 
     return this.userService.getUsersFromDates(timeIn, timeOut);
