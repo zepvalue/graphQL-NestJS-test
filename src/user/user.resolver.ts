@@ -12,10 +12,7 @@ export class UserResolver {
   }
 
   @Query(() => [CreateUserDto])
-  dates(
-    @Args('timeIn', { nullable: true }) timeIn?: Date,
-    @Args('timeOut', { defaultValue: '' }) timeOut?: Date,
-  ) {
+  dates(@Args('timeIn') timeIn?: Date, @Args('timeOut') timeOut?: Date) {
     return this.userService.getUsersFromDates(timeIn, timeOut);
   }
 }
