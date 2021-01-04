@@ -1,4 +1,15 @@
+import { ObjectType, Field } from 'type-graphql';
+
+@ObjectType()
 export class CreateUserDto {
-  sessionID: string;
-  visits: number;
+  @Field()
+  readonly id?: string;
+  @Field()
+  readonly sessionID: string;
+  @Field()
+  readonly totalTime: number;
+  @Field()
+  readonly timeIn: Date;
+  @Field()
+  readonly timeOut: Date;
 }

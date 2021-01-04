@@ -14,20 +14,20 @@ export class UserService {
   create(createUserDto: CreateUserDto): Promise<User> {
     const user = new User();
     user.sessionID = createUserDto.sessionID;
-    user.visits = createUserDto.visits;
+    user.totalTime = createUserDto.totalTime;
+    user.timeIn = createUserDto.timeIn;
+    user.timeOut = createUserDto.timeOut;
 
     return this.usersRepository.save(user);
   }
 
-  async findAll(): Promise<User[]> {
+  async getUsers(): Promise<User[]> {
     return this.usersRepository.find();
   }
 
-  findOne(id: string): Promise<User> {
-    return this.usersRepository.findOne(id);
-  }
-
-  async remove(id: string): Promise<void> {
-    await this.usersRepository.delete(id);
+  async getUsersFromDates(timeIn: Date, timeOut: Date): Promise<User[]> {
+    return this.usersRepository.query(
+      `SELECT * FROM public."user" where timeIn='${timeIn}' and timeOut='${timeOut}'`,
+    );
   }
 }

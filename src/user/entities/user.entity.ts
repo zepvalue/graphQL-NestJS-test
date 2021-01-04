@@ -3,11 +3,17 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column()
   sessionID: string;
 
   @Column()
-  visits: number;
+  totalTime: number;
+
+  @Column()
+  timeIn: Date;
+
+  @Column()
+  timeOut: Date;
 }

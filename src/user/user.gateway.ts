@@ -8,13 +8,17 @@ import {
 } from '@nestjs/websockets';
 import { Logger } from '@nestjs/common';
 import { Socket, Server } from 'socket.io';
-import { UserService } from './user/user.service';
+import { UserService } from './user.service';
 
 @WebSocketGateway()
-export class AppGateway
+export class UserGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
   timer = null;
-  totalSeconds: number = 0;
+  totalTime = 0;
+  timeIn = new Date();
+  timeOut = new Date();
+
+  constructor(private readonly userService: UserService) {}
 
   @WebSocketServer() server: Server;
   private logger: Logger = new Logger('AppGateway');
@@ -30,13 +34,26 @@ export class AppGateway
 
   handleDisconnect(client: Socket) {
     this.logger.log(`Client disconnected: ${client.id}`);
-    console.log(this.totalSeconds);
+    this.timeOut = new Date();
+
+    console.log('client.id', typeof client.id);
+    console.log('time', this.totalTime);
+    console.log('timeIN', typeof this.timeIn);
+    console.log('timeOUT', typeof this.timeOut);
+
+    this.userService.create({
+      sessionID: client.id,
+      totalTime: this.totalTime,
+      timeIn: this.timeIn,
+      timeOut: this.timeOut,
+    });
   }
 
   handleConnection(client: Socket, ...args: any[]) {
     this.logger.log(`Client connected: ${client.id}`);
+    this.timeIn = new Date();
     this.timer = setInterval(() => {
-      this.totalSeconds++;
+      this.totalTime++;
     }, 1000);
   }
 }
